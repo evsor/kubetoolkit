@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kubetlkt"
-version = "0.2.0"
+version = "0.2.2"
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
@@ -12,7 +12,15 @@ dependencies = [
     "coloredlogs==15.0.1",
     "kubernetes==26.1.0",
     "docker==6.0.1",
+    "platformdirs==3.0.0",
 ]
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+kubetoolkit = [".kubetlktconfig"]
+
+
 [project.scripts]
-kubetlkt = "kubetlkt:cli"
+kubetlkt = "kubetoolkit.kubetlkt:cli"

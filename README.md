@@ -5,13 +5,13 @@
 
 Kubernetes Toolkit(<b>kubetlkt</b>) seemlesly launches a deployment from a container image containing a set of tools to investigate and troubleshoot a Kubernetes cluster. It does not make use of the ephimeral containers future for compatibility reasons with clusters running Kubernetes version prior to 1.25
 
-# Current version: 0.2.1
+# Current version: 0.2.2
 ## Installation
 
 ```
 pip install .
 ```
-Note: On Ubuntu 22.04 you will need to export an env variable `DEB_PYTHON_INSTALL_LAYOUT=deb_system` because of this [issue](https://github.com/pypa/setuptools/issues/3269#issuecomment-1254507377)
+Note: On Ubuntu 22.04 you might need to export an env variable `DEB_PYTHON_INSTALL_LAYOUT=deb_system` because of this [issue](https://github.com/pypa/setuptools/issues/3269#issuecomment-1254507377)
 
 ## Usage
 

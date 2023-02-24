@@ -2,6 +2,8 @@ import click
 import coloredlogs, logging
 import kubetoolkit.docker as docker
 import kubetoolkit.kubernetes as kube
+import kubetoolkit.config as config
+
 
 # Set global name used in Docker and Kubernetes
 NAME = "kubetlkt"
@@ -34,6 +36,8 @@ def cli(action, repo, name=NAME):
         # Create kubernetes object
         kube.kube_action(repo, name, action)
     elif action == "cleanup":
+        logger.error("I'm here")
+        config.get_config_dir()
         kube.kube_action(repo, name, action)
     else:
         logger.error(
