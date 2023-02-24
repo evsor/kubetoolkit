@@ -5,12 +5,12 @@
 
 Kubernetes Toolkit(<b>kubetlkt</b>) seemlesly launches a deployment from a container image containing a set of tools to investigate and troubleshoot a Kubernetes cluster. It does not make use of the ephimeral containers future for compatibility reasons with clusters running Kubernetes version prior to 1.25
 
-# Current version: 0.1
+# Current version: 0.2.0
 ## Usage
 
 ```
-pip install -r requirements.txt
-python main.py --action start
+pip install --editable .
+kubetlkt --action start
 ```
 `--action` flag is a required argument that takes 2 values: start and cleanup
 

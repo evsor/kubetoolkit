@@ -1,7 +1,7 @@
 import click
 import coloredlogs, logging
-import kubetlkt.docker as docker
-import kubetlkt.kubernetes as kube
+import kubetoolkit.docker as docker
+import kubetoolkit.kubernetes as kube
 
 # Set global name used in Docker and Kubernetes
 NAME = "kubetlkt"
@@ -24,7 +24,7 @@ coloredlogs.install(level="INFO", fmt="%(asctime)s %(levelname)-2s %(message)s")
     show_default=True,
     help="Docker repository name to push the image. If not specified, the public one will be used",
 )
-def main(action, repo, name=NAME):
+def cli(action, repo, name=NAME):
     logger.info("Firing up")
     if action == "start":
         if repo != "evsoroka":
@@ -39,7 +39,3 @@ def main(action, repo, name=NAME):
         logger.error(
             "Provide a desired action with the --action option: start, cleanup"
         )
-
-
-if __name__ == "__main__":
-    main()
