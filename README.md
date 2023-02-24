@@ -5,13 +5,20 @@
 
 Kubernetes Toolkit(<b>kubetlkt</b>) seemlesly launches a deployment from a container image containing a set of tools to investigate and troubleshoot a Kubernetes cluster. It does not make use of the ephimeral containers future for compatibility reasons with clusters running Kubernetes version prior to 1.25
 
-# Current version: 0.2.0
+# Current version: 0.2.1
+## Installation
+
+```
+pip install .
+```
+Note: On Ubuntu 22.04 you will need to export an env variable `DEB_PYTHON_INSTALL_LAYOUT=deb_system` because of this [issue](https://github.com/pypa/setuptools/issues/3269#issuecomment-1254507377)
+
 ## Usage
 
 ```
-pip install --editable .
 kubetlkt --action start
 ```
+
 `--action` flag is a required argument that takes 2 values: start and cleanup
 
 `start` action will create the Kubernetes deployment in the `default` namespace
