@@ -2,44 +2,50 @@ import click
 import coloredlogs, logging
 import kubetoolkit.docker as docker
 import kubetoolkit.kubernetes as kube
-import kubetoolkit.config as config
+import kubetoolkit.config as conf
 
 
-# Set global name used in Docker and Kubernetes
+# Set globals
 NAME = "kubetlkt"
+PACKAGE_NAME = "kubetoolkit"
+CONFIG_NAME = ".kubetlktconfig"
+CONFIG = None
+
 
 # Configure logging
 logger = logging.getLogger(__name__)
 coloredlogs.install(level="INFO", fmt="%(asctime)s %(levelname)-2s %(message)s")
 
 
-@click.command()
-@click.option(
-    "--action",
-    help="start: creates deployment \
-                                cleanup: removes deployment",
-    required=True,
-)
-@click.option(
-    "--repo",
-    default="evsoroka",
-    show_default=True,
-    help="Docker repository name to push the image. If not specified, the public one will be used",
-)
-def cli(action, repo, name=NAME):
+@click.group()
+def cli():
+    """Kubernetes debugging toolkit"""
     logger.info("Firing up")
-    if action == "start":
-        if repo != "evsoroka":
-            docker.build_image(repo, name)
-            docker.push_image(repo, name)
+    global CONFIG
+    CONFIG = conf.parse_config(PACKAGE_NAME, CONFIG_NAME)
 
-        # Create kubernetes object
-        kube.kube_action(repo, name, action)
-    elif action == "cleanup":
-        logger.error("I'm here")
-        config.get_config_dir()
-        kube.kube_action(repo, name, action)
-    else:
-        logger.error(
-            "Provide a desired action with the --action option: start, cleanup"
-        )
+
+@cli.command(help="Set user configuration")
+@click.option("--repo", help="Set the DockerHub repository", required=True)
+def config(repo):
+    conf.write_user_config(PACKAGE_NAME, CONFIG_NAME, repo)
+
+
+@cli.command(help="Build and push image")
+def image():
+    repo = CONFIG["DEFAULT"]["repo"]
+
+    docker.build_image(repo, NAME, PACKAGE_NAME)
+    docker.push_image(repo, NAME)
+
+
+@cli.command(help="Create debug pod")
+def create():
+    repo = CONFIG["DEFAULT"]["repo"]
+    kube.kube_action(repo, NAME, "start")
+
+
+@cli.command(help="Remove debug pod")
+def clean():
+    repo = CONFIG["DEFAULT"]["repo"]
+    kube.kube_action(repo, NAME, "cleanup")

@@ -5,7 +5,7 @@
 
 Kubernetes Toolkit(<b>kubetlkt</b>) seemlesly launches a deployment from a container image containing a set of tools to investigate and troubleshoot a Kubernetes cluster. It does not make use of the ephimeral containers future for compatibility reasons with clusters running Kubernetes version prior to 1.25
 
-# Current version: 0.2.2
+# Current version: 0.3.0
 ## Installation
 
 ```
@@ -16,16 +16,44 @@ Note: On Ubuntu 22.04 you might need to export an env variable `DEB_PYTHON_INSTA
 ## Usage
 
 ```
-kubetlkt --action start
+kubetlkt --help
 ```
 
-`--action` flag is a required argument that takes 2 values: start and cleanup
+### Commands
 
-`start` action will create the Kubernetes deployment in the `default` namespace
+`create` creates the Kubernetes deployment in the `default` namespace
 
-`cleanup` will remove it
+`clean` removes the deployment, created with the `create` command
 
-There is also an optional `--repo` argument. It should be a valid DockerHub repository. If passed, the script will build the image and push it to the DockerHub registry. It gives the user control over what image to run. If you use this flag, it should be passes together with the `--action` command on every action
+`image` build and push your on image to Docker Hub. In order to use, you need to overwrite the default repository with the `config` command first
+
+`config` overwrite the default configuration. Currently only the Docker Hub repository namespace
+
+## Autocompletion
+
+Add autocompletion to your shell of choice
+### Bash
+
+Save the autocompletion script
+
+```
+_KUBETLKT_COMPLETE=bash_source kubetlkt > ~/.kubetlkt-complete
+```
+Source the file in `~/.bashrc`
+```
+. ~/.kubetlkt-complete
+```
+
+
+### Zsh
+
+```
+_KUBETLKT_COMPLETE=zsh_source kubetlkt > ~/.kubetlkt-complete
+```
+Source the file in `~/.zshrc`
+```
+. ~/.kubetlkt-complete
+```
 
 ## Tools
 
