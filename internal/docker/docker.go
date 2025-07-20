@@ -45,7 +45,7 @@ func Push(image string) error {
 		return err
 	}
 	ctx := context.Background()
-	resp, err := cli.ImagePush(ctx, image, types.ImagePushOptions{RegistryAuth: ""})
+	resp, err := cli.ImagePush(ctx, image, image.PushOptions{})
 	if err != nil {
 		return err
 	}

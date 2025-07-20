@@ -57,3 +57,11 @@ func Save(cfg *Config) error {
 	defer f.Close()
 	return yaml.NewEncoder(f).Encode(cfg)
 }
+
+func LoadDefault() (*Config, error) {
+	var cfg Config
+	cfg.Repository = "evsoroka"
+	cfg.Image = "kubetlkt"
+	cfg.Tag = "latest"
+	return &cfg, nil
+}
