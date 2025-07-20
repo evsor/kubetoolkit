@@ -4,14 +4,14 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/evsor/kubetoolkit/internal/config"
+	"github.com/evsor/kubetlkt/internal/config"
 	"github.com/spf13/cobra"
 )
 
 func NewConfigCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "config",
-		Short: "Manage kubetoolkit configuration",
+		Short: "Manage kubetlkt configuration",
 	}
 	cmd.AddCommand(setImageCmd)
 	return cmd

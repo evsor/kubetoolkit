@@ -1,4 +1,4 @@
-module github.com/evsor/kubetoolkit
+module github.com/evsor/kubetlkt
 
 go 1.24.0
 

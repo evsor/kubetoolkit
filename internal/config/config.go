@@ -15,14 +15,14 @@ type Config struct {
 	Tag        string `yaml:"tag"`
 }
 
-const configFileName = "kubetoolkit.yaml"
+const configFileName = "kubetlkt.yaml"
 
 func ConfigFilePath() (string, error) {
 	configDir := xdg.ConfigHome
 	if configDir == "" {
 		return "", fmt.Errorf("XDG_CONFIG_HOME not set")
 	}
-	return filepath.Join(configDir, "kubetoolkit", configFileName), nil
+	return filepath.Join(configDir, "kubetlkt", configFileName), nil
 }
 
 func Load() (*Config, error) {

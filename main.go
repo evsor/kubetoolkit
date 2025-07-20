@@ -1,15 +1,15 @@
 package main
 
 import (
-	"github.com/evsor/kubetoolkit/cmd/config"
-	"github.com/evsor/kubetoolkit/cmd/debug"
-	"github.com/evsor/kubetoolkit/cmd/image"
+	"github.com/evsor/kubetlkt/cmd/config"
+	"github.com/evsor/kubetlkt/cmd/debug"
+	"github.com/evsor/kubetlkt/cmd/image"
 	"github.com/spf13/cobra"
 	"os"
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "kubetoolkit",
+	Use:   "kubetlkt",
 	Short: "Kubernetes workloads debugging tool.",
 }
 

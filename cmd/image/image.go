@@ -2,8 +2,8 @@ package image
 
 import (
 	"fmt"
-	intconfig "github.com/evsor/kubetoolkit/internal/config"
-	intdocker "github.com/evsor/kubetoolkit/internal/docker"
+	intconfig "github.com/evsor/kubetlkt/internal/config"
+	intdocker "github.com/evsor/kubetlkt/internal/docker"
 	"github.com/spf13/cobra"
 )
 

@@ -2,8 +2,8 @@ package debug
 
 import (
 	"fmt"
-	intconfig "github.com/evsor/kubetoolkit/internal/config"
-	intk8s "github.com/evsor/kubetoolkit/internal/k8s"
+	intconfig "github.com/evsor/kubetlkt/internal/config"
+	intk8s "github.com/evsor/kubetlkt/internal/k8s"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +23,7 @@ var startCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg, err := intconfig.Load()
 		if err != nil {
-			fmt.Println("Config not found. Please run 'kubetoolkit config init' first.")
+			fmt.Println("Config not found. Please run 'kubetlkt config init' first.")
 			return
 		}
 		fmt.Println("Creating deployment...")
@@ -42,7 +42,7 @@ var cleanupCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg, err := intconfig.Load()
 		if err != nil {
-			fmt.Println("Config not found. Please run 'kubetoolkit config init' first.")
+			fmt.Println("Config not found. Please run 'kubetlkt config init' first.")
 			return
 		}
 		fmt.Println("Deleting deployment...")
