@@ -12,7 +12,7 @@ RUN apt-get update -qq && apt-get install -y apt-transport-https \
                                              dnsutils \
                                              traceroute \
                                              telnet \
-                                             netcat \
+                                             netcat-traditional \
                                              net-tools && \
                                              apt-get clean
 
