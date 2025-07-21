@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.4.0] - 21-07-2025
+
+### Changed
+
+* Rewrite in Go
+
 ## [0.3.0] - 25-02-2023
 
 ### Added
