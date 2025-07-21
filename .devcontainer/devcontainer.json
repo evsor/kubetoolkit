@@ -1,0 +1,22 @@
+{
+	"name": "Go",
+	"image": "evsoroka/devcontainers:go-1.1.6",
+	"mounts": [
+		"source=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,target=${localEnv:HOME}${localEnv:USERPROFILE}/.ssh,readonly,type=bind"
+	],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"golang.Go",
+				"fabiospampinato.vscode-diff",
+				"streetsidesoftware.code-spell-checker",
+				"eamodio.gitlens",
+				"mohsen1.prettify-json",
+				"shardulm94.trailing-spaces",
+				"redhat.vscode-yaml",
+				"ms-vscode.makefile-tools"
+			]
+		}
+	},
+	"postCreateCommand": "echo \"source /usr/share/bash-completion/completions/git\" >> ~/.bashrc"
+}
