@@ -2,6 +2,7 @@ package debug
 
 import (
 	"fmt"
+
 	intconfig "github.com/evsor/kubetlkt/internal/config"
 	intk8s "github.com/evsor/kubetlkt/internal/k8s"
 	"github.com/spf13/cobra"
@@ -23,11 +24,11 @@ var startCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg, err := intconfig.Load()
 		if err != nil {
-			fmt.Println("Config not found. Please run 'kubetlkt config init' first.")
-			return
+			fmt.Println("Config not found. Using default configuration.")
+			cfg, err = intconfig.LoadDefault()
 		}
 		fmt.Println("Creating deployment...")
-		err = intk8s.CreateDeployment(cfg.Repository, cfg.Image, "placeholder-namespace") // Replace with actual namespace if needed
+		err = intk8s.CreateDeployment(cfg.Repository, cfg.Image, "default")
 		if err != nil {
 			fmt.Println("Failed to create deployment:", err)
 			return
@@ -42,15 +43,15 @@ var cleanupCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		cfg, err := intconfig.Load()
 		if err != nil {
-			fmt.Println("Config not found. Please run 'kubetlkt config init' first.")
-			return
+			fmt.Println("Config not found. Using default configuration.")
+			cfg, err = intconfig.LoadDefault()
 		}
 		fmt.Println("Deleting deployment...")
-		err = intk8s.DeleteDeployment(cfg.Image, "placeholder-namespace") // Replace with actual namespace if needed
+		err = intk8s.DeleteDeployment(cfg.Image, "default")
 		if err != nil {
 			fmt.Println("Failed to delete deployment:", err)
 			return
 		}
-		fmt.Println("Deployment deleted.")
+		fmt.Println("Deployment deleted in namespace 'default'.")
 	},
 }
