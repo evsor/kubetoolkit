@@ -8,14 +8,14 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewDebugCommand() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "debug",
-		Short: "Debug Kubernetes deployments",
-	}
-	cmd.AddCommand(startCmd)
-	cmd.AddCommand(cleanupCmd)
-	return cmd
+func init() {
+	DebugCmd.AddCommand(startCmd)
+	DebugCmd.AddCommand(cleanupCmd)
+}
+
+var DebugCmd = &cobra.Command{
+	Use:   "debug",
+	Short: "Debug Kubernetes deployments",
 }
 
 var startCmd = &cobra.Command{

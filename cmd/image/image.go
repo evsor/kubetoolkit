@@ -2,18 +2,19 @@ package image
 
 import (
 	"fmt"
+
 	intconfig "github.com/evsor/kubetlkt/internal/config"
 	intdocker "github.com/evsor/kubetlkt/internal/docker"
 	"github.com/spf13/cobra"
 )
 
-func NewImageCommand() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "image",
-		Short: "Build and push Docker images",
-	}
-	cmd.AddCommand(buildAndPushCmd)
-	return cmd
+func init() {
+	ImageCmd.AddCommand(buildAndPushCmd)
+}
+
+var ImageCmd = &cobra.Command{
+	Use:   "image",
+	Short: "Build and push Docker images",
 }
 
 var buildAndPushCmd = &cobra.Command{

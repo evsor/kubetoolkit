@@ -8,13 +8,13 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func NewConfigCommand() *cobra.Command {
-	cmd := &cobra.Command{
-		Use:   "config",
-		Short: "Manage kubetlkt configuration",
-	}
-	cmd.AddCommand(setImageCmd)
-	return cmd
+func init() {
+	ConfigCmd.AddCommand(setImageCmd)
+}
+
+var ConfigCmd = &cobra.Command{
+	Use:   "config",
+	Short: "Manage kubetlkt configuration",
 }
 
 var setImageCmd = &cobra.Command{
